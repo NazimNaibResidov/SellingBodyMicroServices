@@ -11,29 +11,29 @@ namespace EventBus.Base.Events
     public abstract class BaseEventBus : IEventBus
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IEventBusSubscriptionManager eventBusSubscriptionManager;
-        private EventBusConfig EventBusConfig;
+        private readonly IEventBusSubscriptionManager subManager;
+        private  EventBusConfig config;
 
-        protected BaseEventBus(IServiceProvider serviceProvider, IEventBusSubscriptionManager eventBusSubscriptionManager, EventBusConfig eventBusConfig)
+        protected BaseEventBus(IServiceProvider serviceProvider, IEventBusSubscriptionManager eventBusSubscriptionManager, EventBusConfig config)
         {
             _serviceProvider = serviceProvider;
-            this.eventBusSubscriptionManager = new InMemeoryEventBusSubscriptionManager(ProccessEventName);
-            EventBusConfig = eventBusConfig;
+            this.subManager = new InMemeoryEventBusSubscriptionManager(ProccessEventName);
+            this.config = config;
         }
 
         public abstract void Publish(IntegrationEvent @event);
         
         public virtual string ProccessEventName(string name)
         {
-            if (EventBusConfig.DeleteEventPreFix)
-                name = name.TrimStart(EventBusConfig.EventNamePreFix.ToArray());
-            if (EventBusConfig.DeleteEventeSuffix)
-                name = name.TrimStart(EventBusConfig.EventNameSuffix.ToArray());
+            if (config.DeleteEventPreFix)
+                name = name.TrimStart(config.EventNamePreFix.ToArray());
+            if (config.DeleteEventeSuffix)
+                name = name.TrimStart(config.EventNameSuffix.ToArray());
             return name;
         }
         public virtual string GetSubName(string name)
         {
-            return $"{EventBusConfig.SubscriptionClinetAppName}.{ProccessEventName(name)}";
+            return $"{config.SubscriptionClinetAppName}.{ProccessEventName(name)}";
         }
         public abstract void SubScribe<T, TH>()
             where T : IntegrationEvent
@@ -41,22 +41,22 @@ namespace EventBus.Base.Events
         
         public virtual void Dispose()
         {
-            EventBusConfig = null;
+            config = null;
         }
         public async Task<bool> ProccessEvent(string name,string message)
         {
             var eventName=ProccessEventName(name);
             var proccess = false;
-            if (eventBusSubscriptionManager.HasSubScriptionsForEvent(name))
+            if (subManager.HasSubScriptionsForEvent(name))
             {
-                var subscriptions = eventBusSubscriptionManager.GetHadlersForEvent(name);
+                var subscriptions = subManager.GetHadlersForEvent(name);
                 using (var scop= _serviceProvider.CreateScope())
                 {
                     foreach (var subscription in subscriptions)
                     {
                         var handler = _serviceProvider.GetService(subscription.HandleType);
                         if (handler == null) continue;
-                        var eventType = eventBusSubscriptionManager.GetEventTypeByName($"{EventBusConfig.EventNamePreFix}{eventName}{EventBusConfig.EventNameSuffix}");
+                        var eventType = subManager.GetEventTypeByName($"{config.EventNamePreFix}{eventName}{config.EventNameSuffix}");
                         var integrationEvent = JsonConvert.DeserializeObject(message, eventType);
 
                         var concreateType=typeof(IIntegrationEventHandler<>).MakeGenericType(eventType);
