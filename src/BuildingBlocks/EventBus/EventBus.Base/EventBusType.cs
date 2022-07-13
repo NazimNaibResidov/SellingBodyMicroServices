@@ -2,7 +2,7 @@
 {
     public enum EventBusType
     {
-        RabbitMq=0,
-        Azure=1
+        RabbitMq = 0,
+        Azure = 1
     }
 }

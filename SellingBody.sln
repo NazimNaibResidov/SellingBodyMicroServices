@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31605.320
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8E0DC764-0F60-4746-B2DD-F3EC8EA43636}"
 EndProject
@@ -40,31 +40,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotoificationService", "Not
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CatalogService", "CatalogService", "{946B55A2-BAE1-431F-9C35-299E48868814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketService.Api", "src\Services\BasketService\BasketService.Api\BasketService.Api.csproj", "{55BC38C7-19CF-421E-9E2E-6D1D02ABCC30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketService.Api", "src\Services\BasketService\BasketService.Api\BasketService.Api.csproj", "{55BC38C7-19CF-421E-9E2E-6D1D02ABCC30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Api", "src\Services\CatalogService\CatalogService.Api\CatalogService.Api.csproj", "{1403CBCD-B9C2-4945-B3C5-68D4E812C4BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Api", "src\Services\CatalogService\CatalogService.Api\CatalogService.Api.csproj", "{1403CBCD-B9C2-4945-B3C5-68D4E812C4BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndentityService.Api", "src\Services\IndentityService\IndentityService.Api\IndentityService.Api.csproj", "{53F12D13-9F00-4D28-80AF-96AC9D2437C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndentityService.Api", "src\Services\IndentityService\IndentityService.Api\IndentityService.Api.csproj", "{53F12D13-9F00-4D28-80AF-96AC9D2437C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazovWebApp", "BlazovWebApp", "{5F420C67-1EE4-4A5C-A6D1-020654977CCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "src\Clinets\BlazovWebApp\WebApp\WebApp.csproj", "{2F9D34B3-76AD-41B0-80E6-D59C961D74E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\Clinets\BlazovWebApp\WebApp\WebApp.csproj", "{2F9D34B3-76AD-41B0-80E6-D59C961D74E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotoificationService", "src\Services\NotoificationService\NotoificationService\NotoificationService.csproj", "{674C1BB5-6499-47E2-889E-707D6EE2048B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotoificationService", "src\Services\NotoificationService\NotoificationService\NotoificationService.csproj", "{674C1BB5-6499-47E2-889E-707D6EE2048B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderService", "OrderService", "{375C53D2-8501-4772-BFB9-344FB16F5270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Domain", "src\Services\OrderService\OrderService.Domain\OrderService.Domain.csproj", "{622FD053-8678-4580-9C76-3CF261E9558C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Domain", "src\Services\OrderService\OrderService.Domain\OrderService.Domain.csproj", "{622FD053-8678-4580-9C76-3CF261E9558C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Application", "src\Services\OrderService\OrderService.Application\OrderService.Application.csproj", "{445C7D19-33EF-494B-A6E3-342EBF777878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Application", "src\Services\OrderService\OrderService.Application\OrderService.Application.csproj", "{445C7D19-33EF-494B-A6E3-342EBF777878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Infrastructure", "src\Services\OrderService\OrderService.Infrastructure\OrderService.Infrastructure.csproj", "{69B93EC3-58A4-434C-87DC-ED3D168DD7F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Infrastructure", "src\Services\OrderService\OrderService.Infrastructure\OrderService.Infrastructure.csproj", "{69B93EC3-58A4-434C-87DC-ED3D168DD7F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Api", "src\Services\OrderService\OrderService.Api\OrderService.Api.csproj", "{B66CA363-E4C7-4EDF-9535-B8651F098629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Api", "src\Services\OrderService\OrderService.Api\OrderService.Api.csproj", "{B66CA363-E4C7-4EDF-9535-B8651F098629}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PaymentService", "PaymentService", "{50FA1D42-2D9A-4302-8B3B-9933FD644512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService.Api", "src\Services\PaymentService\PaymentService.Api\PaymentService.Api.csproj", "{1443E8E8-1C92-49E7-A38C-84D432C54170}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService.Api", "src\Services\PaymentService\PaymentService.Api\PaymentService.Api.csproj", "{1443E8E8-1C92-49E7-A38C-84D432C54170}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BDBB567F-57AB-4998-9155-509F74FC75D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{9478CE58-C7A0-47EC-BDDD-61D82B2B358C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.UnitTest", "tests\BuildingBlocks\EventBus.UnitTest\EventBus.UnitTest.csproj", "{960C3852-649E-47B5-B433-A6A3160987E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -132,6 +138,10 @@ Global
 		{1443E8E8-1C92-49E7-A38C-84D432C54170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1443E8E8-1C92-49E7-A38C-84D432C54170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1443E8E8-1C92-49E7-A38C-84D432C54170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960C3852-649E-47B5-B433-A6A3160987E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960C3852-649E-47B5-B433-A6A3160987E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960C3852-649E-47B5-B433-A6A3160987E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960C3852-649E-47B5-B433-A6A3160987E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +175,8 @@ Global
 		{B66CA363-E4C7-4EDF-9535-B8651F098629} = {375C53D2-8501-4772-BFB9-344FB16F5270}
 		{50FA1D42-2D9A-4302-8B3B-9933FD644512} = {77057A84-F5A9-4186-BF88-D8C0C1D30398}
 		{1443E8E8-1C92-49E7-A38C-84D432C54170} = {50FA1D42-2D9A-4302-8B3B-9933FD644512}
+		{9478CE58-C7A0-47EC-BDDD-61D82B2B358C} = {BDBB567F-57AB-4998-9155-509F74FC75D2}
+		{960C3852-649E-47B5-B433-A6A3160987E0} = {9478CE58-C7A0-47EC-BDDD-61D82B2B358C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E8B9BB1-200F-4B5F-BC64-2ED9A4D6FA69}

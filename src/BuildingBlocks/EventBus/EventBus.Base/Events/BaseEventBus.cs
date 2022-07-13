@@ -10,67 +10,70 @@ namespace EventBus.Base.Events
 {
     public abstract class BaseEventBus : IEventBus
     {
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IEventBusSubscriptionManager subManager;
-        private  EventBusConfig config;
+        public readonly IServiceProvider _serviceProvider;
+        public readonly IEventBusSubscriptionManager SubManager;
+        public EventBusConfig eventBusConfig;
 
-        protected BaseEventBus(IServiceProvider serviceProvider, IEventBusSubscriptionManager eventBusSubscriptionManager, EventBusConfig config)
+        protected BaseEventBus(IServiceProvider serviceProvider, EventBusConfig config)
         {
             _serviceProvider = serviceProvider;
-            this.subManager = new InMemeoryEventBusSubscriptionManager(ProccessEventName);
-            this.config = config;
+            this.SubManager = new InMemeoryEventBusSubscriptionManager(ProccessEventName);
+            this.eventBusConfig = config;
         }
 
         public abstract void Publish(IntegrationEvent @event);
-        
+
         public virtual string ProccessEventName(string name)
         {
-            if (config.DeleteEventPreFix)
-                name = name.TrimStart(config.EventNamePreFix.ToArray());
-            if (config.DeleteEventeSuffix)
-                name = name.TrimStart(config.EventNameSuffix.ToArray());
+            if (eventBusConfig.DeleteEventPreFix)
+                name = name.TrimStart(eventBusConfig.EventNamePreFix.ToArray());
+            if (eventBusConfig.DeleteEventeSuffix)
+                name = name.TrimStart(eventBusConfig.EventNameSuffix.ToArray());
             return name;
         }
+
         public virtual string GetSubName(string name)
         {
-            return $"{config.SubscriptionClinetAppName}.{ProccessEventName(name)}";
+            return $"{eventBusConfig.SubscriptionClinetAppName}.{ProccessEventName(name)}";
         }
+
         public abstract void SubScribe<T, TH>()
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>;
-        
+
         public virtual void Dispose()
         {
-            config = null;
+            eventBusConfig = null;
         }
-        public async Task<bool> ProccessEvent(string name,string message)
+
+        public async Task<bool> ProccessEvent(string name, string message)
         {
-            var eventName=ProccessEventName(name);
+            var eventName = ProccessEventName(name);
             var proccess = false;
-            if (subManager.HasSubScriptionsForEvent(name))
+            if (SubManager.HasSubScriptionsForEvent(name))
             {
-                var subscriptions = subManager.GetHadlersForEvent(name);
-                using (var scop= _serviceProvider.CreateScope())
+                var subscriptions = SubManager.GetHadlersForEvent(name);
+                using (var scop = _serviceProvider.CreateScope())
                 {
                     foreach (var subscription in subscriptions)
                     {
                         var handler = _serviceProvider.GetService(subscription.HandleType);
                         if (handler == null) continue;
-                        var eventType = subManager.GetEventTypeByName($"{config.EventNamePreFix}{eventName}{config.EventNameSuffix}");
+                        var eventType = SubManager.GetEventTypeByName($"{eventBusConfig.EventNamePreFix}{eventName}{eventBusConfig.EventNameSuffix}");
                         var integrationEvent = JsonConvert.DeserializeObject(message, eventType);
 
-                        var concreateType=typeof(IIntegrationEventHandler<>).MakeGenericType(eventType);
-                        await (Task)concreateType.GetMethod("Handle").Invoke(handler,new object[] { integrationEvent });
+                        var concreateType = typeof(IIntegrationEventHandler<>).MakeGenericType(eventType);
+                        await (Task)concreateType.GetMethod("Handle").Invoke(handler, new object[] { integrationEvent });
                     }
-                } 
+                }
                 proccess = true;
             }
-           
+
             return proccess;
         }
+
         public abstract void UnSubScribe<T, TH>()
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>;
-        
     }
 }

@@ -125,8 +125,6 @@ namespace EventBus.Base.SubManagers
             handler?.Invoke(this, eventName);
         }
 
-       
-
         #endregion ::AddSubscription::
     }
 }

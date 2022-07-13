@@ -10,25 +10,28 @@ namespace EventBus.RabbitMQ
     {
         private readonly IConnectionFactory connectionFactory;
         private readonly int retryCount;
-        private  IConnection connection;
+        private IConnection connection;
         private object lock_object = new object();
         private bool dispose;
 
-        public RabbitMQPersistenConnection(IConnectionFactory connectionFactory,int retryCount=5)
+        public RabbitMQPersistenConnection(IConnectionFactory connectionFactory, int retryCount = 5)
         {
             this.connectionFactory = connectionFactory;
-          
         }
+
         public bool IsConnection => connection != null && connection.IsOpen;
+
         public IModel CreateModel()
         {
             return connection.CreateModel();
         }
+
         public void Dispose()
         {
             dispose = true;
             connection.Dispose();
         }
+
         public bool TryConnect()
         {
             lock (lock_object)
@@ -37,13 +40,12 @@ namespace EventBus.RabbitMQ
                     .Or<BrokerUnreachableException>()
                     .WaitAndRetry(retryCount, retryAttemp => TimeSpan.FromSeconds(Math.Pow(2, retryAttemp)), (Ex, time) =>
                     {
-
                     });
                 policy.Execute(() =>
                 {
                     connection = connectionFactory.CreateConnection();
                 });
-                    if (IsConnection)
+                if (IsConnection)
                 {
                     connection.ConnectionShutdown += Connection_ConnectionShutdown;
                     connection.CallbackException += Connection_CallbackException;
@@ -71,7 +73,5 @@ namespace EventBus.RabbitMQ
             if (!dispose) return;
             TryConnect();
         }
-
-        
     }
 }
