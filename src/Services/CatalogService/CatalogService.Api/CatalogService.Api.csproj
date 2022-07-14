@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastrcuture\EntityConfigration\" />
-    <Folder Include="Infrastrcuture\Setup\" />
   </ItemGroup>
 
 </Project>
