@@ -64,7 +64,7 @@ namespace PaymentService.Api
                 endpoints.MapControllers();
             });
             IEventBus eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.SubScribe<OrderStatedIntegrationEvent, OrderStatedIntegrationEventHandler>();
+            eventBus.Subscribe<OrderStatedIntegrationEvent, OrderStatedIntegrationEventHandler>();
         }
     }
 }

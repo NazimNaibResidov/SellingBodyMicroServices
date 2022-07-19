@@ -36,7 +36,7 @@ namespace EventBus.UnitTest
             });
             var sp = service.BuildServiceProvider();
             var evntBus = sp.GetRequiredService<IEventBus>();
-            evntBus.SubScribe<OrderCreateIntegrationEvent, OrderCreateIntegrationEventHandler>();
+            evntBus.Subscribe<OrderCreateIntegrationEvent, OrderCreateIntegrationEventHandler>();
             Assert.Pass();
         }
     }

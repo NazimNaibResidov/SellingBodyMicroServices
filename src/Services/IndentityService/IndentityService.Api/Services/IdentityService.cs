@@ -24,7 +24,7 @@ namespace IndentityService.Api.Services
             var expries = DateTime.Now.AddDays(10);
             var toke = new JwtSecurityToken(null, null, claims: claims, expires: expries, signingCredentials: creads, notBefore: DateTime.Now);
             var encodingJwt = new JwtSecurityTokenHandler().WriteToken(toke);
-           
+
             var response = new LoginResponseModel()
             {
                 UserToken = encodingJwt,

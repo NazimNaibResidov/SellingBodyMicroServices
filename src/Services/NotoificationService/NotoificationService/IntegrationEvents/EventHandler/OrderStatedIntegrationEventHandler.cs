@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace NotoificationService.IntegrationEvents.EventHandler
 {
-    public class OrderStatedIntegrationEventHandler : IIntegrationEventHandler<OrderPaymnetFailedIntegrationEvent>
+    public class OrderPaymnetFailedIntegrationEventHandlerHandler : IIntegrationEventHandler<OrderPaymnetFailedIntegrationEvent>
     {
-        private readonly ILogger<PaymentService.Api.IntegrationEvents.Events.OrderStatedIntegrationEvent> logger;
+        private readonly ILogger<OrderPaymnetFailedIntegrationEvent> logger;
 
         public Task Handle(OrderPaymnetFailedIntegrationEvent @event)
         {
-            throw new System.NotImplementedException();
+            logger.LogInformation($"Order Payment Success with OrderId {@event.OrderId}");
+            return Task.CompletedTask;
         }
     }
 }

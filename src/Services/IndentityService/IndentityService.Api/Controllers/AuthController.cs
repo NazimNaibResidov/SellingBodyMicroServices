@@ -1,6 +1,5 @@
 ﻿using IndentityService.Api.Models;
 using IndentityService.Api.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IndentityService.Api.Controllers
@@ -15,10 +14,11 @@ namespace IndentityService.Api.Controllers
         {
             this.service = service;
         }
+
         [HttpPost]
         public IActionResult Login([FromBody] LoginRequestModel model)
         {
-            var result= service.Login(model);
+            var result = service.Login(model);
             return Ok(result);
         }
     }

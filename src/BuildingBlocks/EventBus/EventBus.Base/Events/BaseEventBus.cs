@@ -37,7 +37,7 @@ namespace EventBus.Base.Events
             return $"{eventBusConfig.SubscriptionClinetAppName}.{ProccessEventName(name)}";
         }
 
-        public abstract void SubScribe<T, TH>()
+        public abstract void Subscribe<T, TH>()
             where T : IntegrationEvent
             where TH : IIntegrationEventHandler<T>;
 

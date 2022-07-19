@@ -66,7 +66,7 @@ namespace EventBus.RabbitMQ
             });
         }
 
-        public override void SubScribe<T, TH>()
+        public override void Subscribe<T, TH>()
         {
             var eventName = typeof(T).Name;
             eventName = ProccessEventName(eventName);

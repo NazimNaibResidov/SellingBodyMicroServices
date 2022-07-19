@@ -6,7 +6,7 @@ namespace EventBus.Base.Abstrasctions
     {
         void Publish(IntegrationEvent @event);
 
-        void SubScribe<T, TH>() where T : IntegrationEvent where TH : IIntegrationEventHandler<T>;
+        void Subscribe<T, TH>() where T : IntegrationEvent where TH : IIntegrationEventHandler<T>;
 
         void UnSubScribe<T, TH>() where T : IntegrationEvent where TH : IIntegrationEventHandler<T>;
     }
