@@ -1,4 +1,5 @@
 using CatalogService.Api.Extensions;
+using CatalogService.Api.Infrastrcuture.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,7 @@ namespace CatalogService.Api
         {
             services.AddControllers();
             services.ConfigureDbContex(Configuration);
+            services.SeedAsync();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CatalogService.Api", Version = "v1" });

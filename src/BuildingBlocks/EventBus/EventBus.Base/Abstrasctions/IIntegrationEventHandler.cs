@@ -7,8 +7,4 @@ namespace EventBus.Base.Abstrasctions
     {
         Task Handle(T @event);
     }
-
-    public interface IntegrationEventHandler
-    {
-    }
 }

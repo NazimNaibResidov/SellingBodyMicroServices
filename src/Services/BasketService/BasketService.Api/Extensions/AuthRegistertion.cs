@@ -9,6 +9,7 @@ namespace BasketService.Api.Extensions
     {
         public static IServiceCollection RegisterionAuth(IServiceCollection servic, IConfiguration confguration)
         {
+            
             var key = confguration["key"];
             var singinKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key));
             servic.AddAuthentication(ops =>
