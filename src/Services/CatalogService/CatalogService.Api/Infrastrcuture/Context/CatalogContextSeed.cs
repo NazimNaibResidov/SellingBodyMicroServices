@@ -52,8 +52,8 @@ namespace CatalogService.Api.Infrastrcuture.Context
         {
             var sp = service.BuildServiceProvider();
             var context= sp.GetRequiredService<CatalogContext>();
-            context.Database.EnsureCreated();
-            context.Database.Migrate();
+            //context.Database.EnsureCreated();
+            //context.Database.Migrate();
             if (!context.CatalogItems.Any())
             {
                 CatalogBrendSeed(context);

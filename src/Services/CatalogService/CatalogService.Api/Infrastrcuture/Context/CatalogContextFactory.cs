@@ -8,7 +8,7 @@ namespace CatalogService.Api.Infrastrcuture.Context
         public CatalogContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CatalogContext>();
-            optionsBuilder.UseSqlServer("server=.;database=catalog;trusted_connection=true;");
+            optionsBuilder.UseSqlServer("WINDOWS-N3J379M\\SQLEXPRESS01;database=catalog;trusted_connection=true;");
 
             return new CatalogContext(optionsBuilder.Options);
         }
