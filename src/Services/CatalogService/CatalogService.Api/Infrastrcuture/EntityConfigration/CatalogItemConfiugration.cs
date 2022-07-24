@@ -24,7 +24,7 @@ namespace CatalogService.Api.Infrastrcuture.EntityConfigration
             builder.Property(x => x.PictureFileName)
                 .IsRequired(false);
             builder.HasOne(x => x.CatalogBrend)
-                .WithMany(x=>x.CatalogItems)
+                .WithMany(x => x.CatalogItems)
                 .HasForeignKey(x => x.CatalogBrendId);
             builder.HasOne(x => x.catalogType)
                .WithMany(x => x.CatalogItems)

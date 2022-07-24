@@ -1,20 +1,14 @@
 ﻿using Bogus;
 using CatalogService.Api.Core.Domain;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.IO;
-using System.IO.Compression;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CatalogService.Api.Infrastrcuture.Context
 {
     public static class CatalogContextSeed
     {
         public const string _path = "http://fakeimg.pl/350x200/ff0000/000";
+
         private static void CatalogBrendSeed(CatalogContext context)
         {
             var CatalogBrend = new Faker<CatalogBrend>()
@@ -23,6 +17,7 @@ namespace CatalogService.Api.Infrastrcuture.Context
             context.CatalogBrends.AddRange(CatalogBrend);
             context.SaveChanges();
         }
+
         private static void CatalogTypeSeed(CatalogContext context)
         {
             var CatalogBrend = new Faker<CatalogType>()
@@ -31,6 +26,7 @@ namespace CatalogService.Api.Infrastrcuture.Context
             context.CatalogTypes.AddRange(CatalogBrend);
             context.SaveChanges();
         }
+
         private static void CatalogItemSeed(CatalogContext context)
         {
             int CatalogBrendId = 1;
@@ -40,18 +36,18 @@ namespace CatalogService.Api.Infrastrcuture.Context
             .RuleFor(x => x.Description, x => x.Commerce.ProductDescription())
             .RuleFor(x => x.PictureFileName, _path)
             .RuleFor(x => x.PictureUrl, _path)
-            .RuleFor(x=>x.CatalogBrendId,CatalogBrendId++)
-            .RuleFor(x=>x.CatalogTypeId,CatalogTypeId++)
+            .RuleFor(x => x.CatalogBrendId, CatalogBrendId++)
+            .RuleFor(x => x.CatalogTypeId, CatalogTypeId++)
             .RuleFor(x => x.Price, x => x.Random.Number(10, 100))
             .Generate(100);
             context.CatalogItems.AddRange(CatalogItems);
             context.SaveChanges();
-
         }
+
         public static void SeedAsync(this IServiceCollection service)
         {
             var sp = service.BuildServiceProvider();
-            var context= sp.GetRequiredService<CatalogContext>();
+            var context = sp.GetRequiredService<CatalogContext>();
             //context.Database.EnsureCreated();
             //context.Database.Migrate();
             if (!context.CatalogItems.Any())
@@ -60,8 +56,6 @@ namespace CatalogService.Api.Infrastrcuture.Context
                 CatalogTypeSeed(context);
                 CatalogItemSeed(context);
             }
-           
-            
         }
 
         //private async void GetCatalogPrictures(string contentPath, string picturePath)

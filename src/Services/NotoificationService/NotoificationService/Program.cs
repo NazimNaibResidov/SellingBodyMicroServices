@@ -18,10 +18,10 @@ namespace NotoificationService
             ConfiugerService(service);
             var sp = service.BuildServiceProvider();
             var subService = sp.GetRequiredService<IEventBus>();
-            subService.Subscribe<OrderPaymnetFailedIntegrationEvent, OrderPaymnetFailedIntegrationEventHandlerHandler > ();
+            subService.Subscribe<OrderPaymnetFailedIntegrationEvent, OrderPaymnetFailedIntegrationEventHandlerHandler>();
             subService.Subscribe<OrderPaymnetSuccessIntegrationEvent, OrderPaymnetSuccessIntegrationEventHandler>();
             //sp.GetRequiredService<OrderPaymnetFailedIntegrationEvent, OrderPaymnetFailedIntegrationEventHandlerHandler>();
-           
+
             Console.WriteLine("Hello World is ruuning!");
             Console.ReadLine();
         }
