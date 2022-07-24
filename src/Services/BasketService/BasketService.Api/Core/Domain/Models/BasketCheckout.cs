@@ -10,7 +10,7 @@ namespace BasketService.Api.Core.Domain.Models
         public string Country { get; set; }
         public string ZipCode { get; set; }
         public string CartNumber { get; set; }
-        public string CartHoldName { get; set; }
+        public string CartHolderName { get; set; }
         public DateTime CartExpriration { get; set; }
         public string CartSecurityNumber { get; set; }
         public int CartTypeId { get; set; }

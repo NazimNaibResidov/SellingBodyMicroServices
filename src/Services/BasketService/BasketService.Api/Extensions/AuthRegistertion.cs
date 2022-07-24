@@ -16,7 +16,6 @@ namespace BasketService.Api.Extensions
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
             })
                 .AddJwtBearer(options =>
                 {
