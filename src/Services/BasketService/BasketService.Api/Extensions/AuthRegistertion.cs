@@ -1,7 +1,4 @@
-﻿using EventBus.Base;
-using EventBus.Base.Abstrasctions;
-using EventBus.Factory;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -33,27 +30,6 @@ namespace BasketService.Api.Extensions
                     };
                 });
             return servic;
-        }
-    }
-    public static class ConfigurationExtension
-    {
-        public static void Configuration(this IServiceCollection services,IConfiguration configuration)
-        {
-            services.RegisterionAuth(configuration);
-            services.AddSingleton(sp => sp.ConfigurRedis(configuration));
-            services.AddSingleton<IEventBus>(sp =>
-            {
-                EventBusConfig confog = new()
-                {
-                    ConnectionRetryCount = 5,
-                    EventNameSuffix = "EventBusTask",
-                    SubscriptionClinetAppName = "NotificationService",
-                    eventBusType = EventBusType.RabbitMq
-                };
-                return EventBusFactory.Create(confog, sp);
-            });
-            
-
         }
     }
 }

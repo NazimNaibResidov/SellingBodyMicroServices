@@ -1,3 +1,4 @@
+using BasketService.Api.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace BasketService.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configuration(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasketService.Api", Version = "v1" });
