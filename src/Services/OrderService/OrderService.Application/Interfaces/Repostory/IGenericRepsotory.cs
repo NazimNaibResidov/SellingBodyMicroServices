@@ -10,35 +10,7 @@ namespace OrderService.Application.Interfaces.Repostory
 {
     public interface IGenericRepsotory<T> : IRepository<T> where T : BaseEntity
     {
-        Task<int> AddAsync(T entity);
-
-        int Add(T entity);
-
-        int Add(IEnumerable<T> entity);
-
-        Task<int> AddAsync(IEnumerable<T> entity);
-
-        Task<int> UpdateAsync(T entity);
-
-        int Update(T entity);
-
-        Task<int> DeleteAsync(T entity);
-
-        int Delete(T entity);
-
-        Task<int> DeleteAsync(Guid Id);
-
-        int Delete(Guid id);
-
-        bool DeleteRange(Expression<Func<T, bool>> peridicate);
-
-        Task<bool> DeleteRangeAsync(Expression<Func<T, bool>> peridicate);
-
-        bool AddOrUpdate(T entity);
-
-        Task<bool> AddOrUpdateAsync(T entity);
-
-        IQueryable<T> AsQueryable();
+       
 
         Task<List<T>> GetAll(bool noTracking = true);
 
