@@ -4,7 +4,7 @@ using OrderService.Domain.AggregateModel.OrderAggreage;
 
 namespace OrderService.Infrastructure.EntityConfiguration
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    public class OrderEntryConfiguration : IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
