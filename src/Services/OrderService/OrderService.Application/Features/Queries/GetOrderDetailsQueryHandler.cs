@@ -21,9 +21,10 @@ namespace OrderService.Application.Features.Queries
 
         public async Task<OrderDatialViewModel> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
         {
-            var order = await orderRepsotory.GetByIdAsync(request.OrderId, i =>);
-            var result = mapper.Map<OrderDatialViewModel>(order);
-            return result;
+            //var order = await orderRepsotory.GetByIdAsync(request.OrderId, i =>);
+            //var result = mapper.Map<OrderDatialViewModel>(order);
+            //return result;
+            return null;
         }
     }
 }

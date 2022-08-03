@@ -1,7 +1,4 @@
-﻿using EventBus.Base;
-using EventBus.Base.Abstrasctions;
-using EventBus.Factory;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NotoificationService.IntegrationEvents.EventHandler;
 using NotoificationService.IntegrationEvents.Events;

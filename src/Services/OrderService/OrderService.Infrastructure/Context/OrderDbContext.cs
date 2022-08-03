@@ -11,6 +11,7 @@ namespace OrderService.Infrastructure.Context
 {
     public  class OrderDbContext:DbContext
     {
+        public const string DEFAULT_SCHEMA = "ordering";
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<Order> Orders { get; set; }

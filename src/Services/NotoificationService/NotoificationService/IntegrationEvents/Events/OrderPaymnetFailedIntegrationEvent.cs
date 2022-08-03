@@ -1,6 +1,4 @@
-﻿using EventBus.Base.Events;
-
-namespace NotoificationService.IntegrationEvents.Events
+﻿namespace NotoificationService.IntegrationEvents.Events
 {
     public class OrderPaymnetFailedIntegrationEvent : IntegrationEvent
     {

@@ -1,4 +1,5 @@
-﻿using OrderService.Domain.Events;
+﻿using OrderService.Domain.AggregateModel.OrderAggreage;
+using OrderService.Domain.Events;
 using OrderService.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace OrderService.Domain.AggregateModel.BuyerAggregate
         public string Name { get; private set; }
 
         private List<PaymentMethod> _paymentMethods;
-
+        public ICollection<Order> Orders { get; set; }
         public IEnumerable<PaymentMethod> PaymentMethods => _paymentMethods.AsReadOnly();
 
         protected Buyer()
@@ -30,7 +31,7 @@ namespace OrderService.Domain.AggregateModel.BuyerAggregate
 
         public PaymentMethod VerifyOrAddPaymentMethod(
             int cardTypeId, string alias, string cardNumber,
-            string securityNumber, string cardHolderName, DateTime expiration, int orderId)
+            string securityNumber, string cardHolderName, DateTime expiration, Guid orderId)
         {
             var existingPayment = _paymentMethods
                 .SingleOrDefault(p => p.IsEqualTo(cardTypeId, cardNumber, expiration));
@@ -49,6 +50,12 @@ namespace OrderService.Domain.AggregateModel.BuyerAggregate
             AddDomainEvent(new BuyerAndPaymentMethodVerifiedDomainEvent(this, payment, orderId));
 
             return payment;
+        }
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj) ||
+                (obj is Buyer buyer && Id.Equals(buyer.Id)
+                && Name == buyer.Name);
         }
     }
 }

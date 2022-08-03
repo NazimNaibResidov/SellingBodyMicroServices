@@ -1,84 +1,54 @@
 ﻿using OrderService.Domain.Exceptions;
 using OrderService.Domain.SeedWork;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OrderService.Domain.AggregateModel.OrderAggreage
 {
     public class OrderItem
-     : BaseEntity
+     : IAggregateRoot
     {
-        // DDD Patterns comment
-        // Using private fields, allowed since EF Core 1.1, is a much better encapsulation
-        // aligned with DDD Aggregates and Domain Entities (Instead of properties and property collections)
-        private string _productName;
+        
+        public string ProductName;
 
-        private string _pictureUrl;
-        private decimal _unitPrice;
-        private decimal _discount;
-        private int _units;
+        public string PictureUrl;
+        public decimal UnitPrice;
+        public decimal Discount;
+        public int Units;
 
-        public int ProductId { get; private set; }
+        public int ProductId { get;  set; }
 
         protected OrderItem()
         { }
 
-        public OrderItem(int productId, string productName, decimal unitPrice, decimal discount, string PictureUrl, int units = 1)
+        public OrderItem(string productName, string pictureUrl, decimal unitPrice, decimal discount, int units, int productId)
         {
-            if (units <= 0)
-            {
-                throw new OrderingDomainException("Invalid number of units");
-            }
-
-            if ((unitPrice * units) < discount)
-            {
-                throw new OrderingDomainException("The total of order item is lower than applied discount");
-            }
-
+            ProductName = productName;
+            PictureUrl = pictureUrl;
+            UnitPrice = unitPrice;
+            Discount = discount;
+            Units = units;
             ProductId = productId;
-
-            _productName = productName;
-            _unitPrice = unitPrice;
-            _discount = discount;
-            _units = units;
-            _pictureUrl = PictureUrl;
         }
-
-        public string GetPictureUri() => _pictureUrl;
-
-        public decimal GetCurrentDiscount()
+        public IEnumerable<ValidationResult> Validate(ValidationContext context)
         {
-            return _discount;
+            var results = new List<ValidationResult>();
+            if (Units<=0)
+            {
+                results.Add(new ValidationResult("Invalid number if units", new[] { "units" }));
+            }
+            return results;
         }
-
+        public string GetOrderItemProductName() => ProductName;
         public int GetUnits()
         {
-            return _units;
+            return Units;
         }
 
         public decimal GetUnitPrice()
         {
-            return _unitPrice;
-        }
-
-        public string GetOrderItemProductName() => _productName;
-
-        public void SetNewDiscount(decimal discount)
-        {
-            if (discount < 0)
-            {
-                throw new OrderingDomainException("Discount is not valid");
-            }
-
-            _discount = discount;
-        }
-
-        public void AddUnits(int units)
-        {
-            if (units < 0)
-            {
-                throw new OrderingDomainException("Invalid units");
-            }
-
-            _units += units;
+            return UnitPrice;
         }
     }
-}
+  }

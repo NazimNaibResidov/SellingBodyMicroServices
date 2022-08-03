@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OrderService.Domain.AggregateModel.OrderAggreage
 {
-    public class Address : ValueObject
+    public record Address /*: ValueObject*/
     {
         public String Street { get; private set; }
         public String City { get; private set; }
@@ -24,14 +24,14 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             ZipCode = zipcode;
         }
 
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            // Using a yield return statement to return each element one at a time
-            yield return Street;
-            yield return City;
-            yield return State;
-            yield return Country;
-            yield return ZipCode;
-        }
+        //protected override IEnumerable<object> GetEqualityComponents()
+        //{
+        //    // Using a yield return statement to return each element one at a time
+        //    yield return Street;
+        //    yield return City;
+        //    yield return State;
+        //    yield return Country;
+        //    yield return ZipCode;
+        //}
     }
 }

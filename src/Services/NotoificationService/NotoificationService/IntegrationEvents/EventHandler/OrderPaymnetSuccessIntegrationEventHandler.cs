@@ -1,5 +1,4 @@
-﻿using EventBus.Base.Abstrasctions;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NotoificationService.IntegrationEvents.Events;
 using System.Threading.Tasks;
 
